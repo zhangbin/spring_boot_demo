@@ -2,7 +2,6 @@ package cn.skio.demo.mapper;
 
 import cn.skio.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

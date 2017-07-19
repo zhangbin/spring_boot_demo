@@ -16,6 +16,10 @@ public class UserService {
     @Autowired
     private UserMapper userDao;
 
+    public Long createUser(String username, String email) {
+        return userDao.save(new User(email, username));
+    }
+
     public User findById(Long id) {
         try {
             return userDao.findUserById(id);
@@ -25,7 +29,7 @@ public class UserService {
         }
     }
 
-    public List<User> all(){
+    public List<User> all() {
         return userDao.findAll();
     }
 }
