@@ -15,6 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zhangbin on 2017/7/19.
  */
@@ -46,6 +49,10 @@ public class UserserviceTest {
         user.setId(1L);
 
         Mockito.when(userMapper.findUserById(user.getId())).thenReturn(user);
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        Mockito.when(userMapper.findAll()).thenReturn(list);
+        Mockito.when(userMapper.count()).thenReturn(list.size());
     }
 
     @Test
@@ -60,4 +67,10 @@ public class UserserviceTest {
         User user = userService.findById(1L);
         Assert.isTrue(user.getUsername().equals("admin"), "find user by id success");
     }
+
+    @Test
+    public void allTet(){
+        Assert.isTrue(userService.all().size() == 1, "users count is 1");
+    }
+
 }
