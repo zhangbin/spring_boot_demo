@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.skio.demo.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="cn.skio.demo.entity.Permission">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="permission" property="permission"/>
+    <result column="resource_type" property="resourceType"/>
+    <result column="available" property="available"/>
+    <result column="created_at" property="createdAt"/>
+    <result column="updated_at" property="updatedAt"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+        id, name, permission, resource_type, available, created_at, updated_at
+   </sql>
+
+  <select id="findByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT permission.*
+    FROM permission as permission left join roles_permissions as rp on permission.id = rp.role_id
+    WHERE rp.role_id = #{roleId}
+  </select>
+
+</mapper>

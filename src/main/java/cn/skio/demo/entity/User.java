@@ -1,44 +1,30 @@
 package cn.skio.demo.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by zhangbin on 2017/6/13.
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User extends BaseEntity {
 
-public class User {
+  private String username;
+  private String password;
+  private String salt;
+  private Integer alive;
 
-    private Long id;
-    private String email;
-    private String username;
+  private List<Role> roles;
 
-    public User() {
-    }
 
-    public User(String email, String username) {
-        this.email = email;
-        this.username = username;
-    }
+  public String getRoleNames() {
+    return this.getRoles().stream().map(Role::getName).collect(Collectors.joining(";"));
+  }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

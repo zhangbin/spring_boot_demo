@@ -18,11 +18,6 @@ public class Hello {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/user")
-    public User findUserById(@RequestParam(value="id") Long id){
-       return userService.findById(id);
-    }
-
     @RequestMapping("/users")
     public List<User> users(){
         return userService.all();
