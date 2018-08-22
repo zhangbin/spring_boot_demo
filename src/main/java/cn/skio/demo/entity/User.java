@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,8 @@ public class User extends BaseEntity {
   private String salt;
   private Integer alive;
 
-  private List<Role> roles;
+  private List<Role> roles = new ArrayList<>();
+  private List<Permission> permissions = new ArrayList<>();
 
 
   public String getRoleNames() {

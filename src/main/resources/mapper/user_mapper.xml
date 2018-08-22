@@ -21,6 +21,13 @@
     FROM user
   </select>
 
+  <select id="getByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user
+    WHERE username = #{username}
+  </select>
+
   <select id="findUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>

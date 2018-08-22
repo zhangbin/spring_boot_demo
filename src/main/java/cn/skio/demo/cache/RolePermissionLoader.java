@@ -1,6 +1,5 @@
 package cn.skio.demo.cache;
 
-import cn.skio.demo.entity.Permission;
 import cn.skio.demo.entity.Role;
 import cn.skio.demo.mapper.PermissionMapper;
 import cn.skio.demo.mapper.RoleMapper;
