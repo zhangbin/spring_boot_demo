@@ -19,6 +19,6 @@ public class LoginDto {
   private String username;
 
   @ApiModelProperty(value = "密码", example = "password")
-  @NotBlank(message = "密码必须听写")
+  @NotBlank(message = "密码必须填写")
   private String password;
 }
