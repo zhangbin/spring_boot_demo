@@ -11,6 +11,9 @@
 ## GraphQL
 使用graphQl提供外部api
 
+findAll查询没有设置权限，可以随便查询
+findByUsername设置了权限，查询需要传递token，需要使用postman等工具进行模拟
+
 ## Rest
 rest api
 
