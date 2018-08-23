@@ -51,7 +51,7 @@ public class Swagger2Config {
     return new Docket(DocumentationType.SWAGGER_2)
       .apiInfo(apiInfo)
       .select()
-      .apis(RequestHandlerSelectors.basePackage("cn.skio.demo"))
+      .apis(RequestHandlerSelectors.basePackage("cn.skio.demo.web.rest"))
       .paths(PathSelectors.any())
       .build().globalOperationParameters(pars);
   }
