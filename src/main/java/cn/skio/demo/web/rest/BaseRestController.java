@@ -21,7 +21,7 @@ public class BaseRestController {
    * @return map
    */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  protected Map<String,Object> validateError(BindingResult bindingResult) {
+  protected Map<String, Object> validateError(BindingResult bindingResult) {
     List<Map<String, String>> errors = bindingResult.getFieldErrors().stream().map(error -> {
       Map<String, String> map = new HashMap<>();
       if (error.getDefaultMessage().contains(DATE_ERROR)) {
