@@ -1,5 +1,6 @@
 package cn.skio.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"salt", "password"})
 public class User extends BaseEntity {
 
   private String username;
@@ -26,7 +28,7 @@ public class User extends BaseEntity {
 
 
   public String getRoleNames() {
-    return this.getRoles().stream().map(Role::getName).collect(Collectors.joining(";"));
+    return this.getRoles().stream().map(Role::getContent).collect(Collectors.joining(";"));
   }
 
 }

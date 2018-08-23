@@ -2,8 +2,10 @@ package cn.skio.demo.service;
 
 import cn.skio.demo.auth.JWTUtil;
 import cn.skio.demo.auth.ShiroKit;
+import cn.skio.demo.dto.LoginDto;
 import cn.skio.demo.entity.Role;
 import cn.skio.demo.entity.User;
+import cn.skio.demo.exception.LoginFailedException;
 import cn.skio.demo.mapper.RoleMapper;
 import cn.skio.demo.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -27,19 +29,19 @@ public class UserService {
     return userMapper.findAll();
   }
 
-  public User login(User loginUser) throws LoginException {
+  public User login(LoginDto loginUser) throws LoginFailedException {
     User user = getByUsername(loginUser.getUsername());
     if (user == null) {
-      throw new LoginException("用户不存在");
+      throw new LoginFailedException("用户不存在");
     }
-    String encodedPassword = ShiroKit.md5(loginUser.getPassword(), loginUser.getSalt());
+    String encodedPassword = ShiroKit.md5(loginUser.getPassword(), user.getSalt());
     if (user.getPassword().equals(encodedPassword)) {
       String token = JWTUtil.sign(user);
       stringRedisTemplate.opsForValue().set(user.getUsername() + "_token", token, 1, TimeUnit.DAYS);
       log.info("用户：" + user.getUsername() + "登录成功");
       return user;
     } else {
-      throw new LoginException("用户密码错误");
+      throw new LoginFailedException("用户密码错误");
     }
   }
 
