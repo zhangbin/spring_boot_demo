@@ -3,6 +3,8 @@
 ## springboot 2.0.4
 前端模板使用spring的thymeleaf
 
+使用bootstrap 和 jquery
+
 ## redis
 使用redis缓存
 
