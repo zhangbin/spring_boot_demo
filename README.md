@@ -15,7 +15,7 @@
 rest api
 
 ## shiro + jwt
-使用shiro控制权限，jwt来校验和生成token，提供个rest api
+使用shiro控制权限，jwt来校验和生成token
 
 token缓存在redis中，有效期1天，自动续命
 
