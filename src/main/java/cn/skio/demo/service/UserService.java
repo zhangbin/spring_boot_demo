@@ -25,7 +25,14 @@ import java.util.concurrent.TimeUnit;
 public class UserService {
 
   public List<User> all() {
-    return userMapper.findAll();
+    List<User> users = userMapper.findAll();
+    users.forEach(user -> {
+      List<Role> roles = roleMapper.findByUserId(user.getId());
+      user.setRoles(roles);
+      setUserPermission(user);
+    });
+
+    return users;
   }
 
   public User login(LoginDto loginUser) throws LoginFailedException {
@@ -51,18 +58,23 @@ public class UserService {
     }
 
     List<Role> roles = roleMapper.findByUserId(user.getId());
-
-    roles.forEach(role -> {
-      Role cacheRole = (Role) redisTemplate.opsForValue().get("role_" + role.getId());
-      cacheRole.getPermissions().forEach(permission -> {
-        if (!user.getPermissions().contains(permission)) {
-          user.getPermissions().add(permission);
-        }
-      });
-    });
-
     user.setRoles(roles);
+    setUserPermission(user);
     return user;
+  }
+
+  private void setUserPermission(User user) {
+    List<Role> roles = user.getRoles();
+    if (roles.size() > 0) {
+      roles.forEach(role -> {
+        Role cacheRole = (Role) redisTemplate.opsForValue().get("role_" + role.getId());
+        cacheRole.getPermissions().forEach(permission -> {
+          if (!user.getPermissions().contains(permission)) {
+            user.getPermissions().add(permission);
+          }
+        });
+      });
+    }
   }
 
   @Autowired

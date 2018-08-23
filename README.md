@@ -13,3 +13,10 @@
 使用shiro控制权限，jwt来校验和生成token，提供个rest api
 
 token缓存在redis中，有效期一小时，自动续命
+
+## show
+web页面访问： http://127.0.0.1:8080
+
+swagger： http://127.0.0.1:8080/swagger-ui.html
+
+graphql： http://127.0.0.1:8080/graphiql

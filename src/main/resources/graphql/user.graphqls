@@ -1,0 +1,30 @@
+type Role {
+    id: ID!
+    name: String
+    content: String
+    state: Int
+    permissions: [Permission]
+}
+
+type Permission {
+    id: ID!
+    name: String
+    permission: String
+    resourceType: String
+    available: Int
+}
+
+type User {
+    id: ID!
+    username: String
+    password: String
+    salt: String
+    alive: Int
+    roles: [Role]
+    permissions: [Permission]
+}
+
+type Query {
+    findAll: [User]!
+    findByUsername(username: String!): User
+}
