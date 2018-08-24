@@ -28,3 +28,4 @@ type Query {
     findAll: [User]!
     findByUsername(username: String!): User
 }
+

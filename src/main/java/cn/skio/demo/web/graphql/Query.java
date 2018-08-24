@@ -17,7 +17,7 @@ import java.util.List;
 public class Query implements GraphQLQueryResolver {
 
   public List<User> findAll() {
-    return userService.all();
+    return userService.findAll();
   }
 
   @RequiresPermissions("user:read")

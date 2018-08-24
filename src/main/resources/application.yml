@@ -53,5 +53,5 @@ spring:
 spring:
   profiles: test
   datasource:
-    schema: classpath:init_table.db.sql
+    schema: classpath:init_table.sql
     driverClassName: org.h2.Driver

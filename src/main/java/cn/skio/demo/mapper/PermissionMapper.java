@@ -16,4 +16,6 @@ import java.util.List;
 public interface PermissionMapper {
 
   List<Permission> findByRoleId(@Param("roleId") Long roleId);
+
+  List<Permission> findByUserId(Long userId);
 }

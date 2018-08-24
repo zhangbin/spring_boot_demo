@@ -21,4 +21,11 @@
     WHERE rp.role_id = #{roleId}
   </select>
 
+  <select id="findByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT distinct permission.*
+    FROM permission as permission
+    LEFT JOIN roles_permissions as rp on permission.id = rp.role_id
+    LEFT JOIN users_roles as ur on ur.role_id = rp.role_id
+    WHERE ur.id = #{userId}
+  </select>
 </mapper>

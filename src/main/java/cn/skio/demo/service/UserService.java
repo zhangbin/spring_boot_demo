@@ -31,7 +31,6 @@ public class UserService {
       user.setRoles(roles);
       setUserPermission(user);
     });
-
     return users;
   }
 
@@ -49,6 +48,10 @@ public class UserService {
     } else {
       throw new LoginFailedException("用户密码错误");
     }
+  }
+
+  public List<User> findAll() {
+    return userMapper.findAll();
   }
 
   public User getByUsername(String username) {
