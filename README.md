@@ -13,7 +13,7 @@
 
 - findAll查询没有设置权限，可以随便查询
 - findByUsername设置了权限，查询需要传递token，需要使用postman等工具进行模拟
-![postman](https://github.com/toby1024/spring_boot_demo/blob/master/doc/images/20201211162002.jpg)
+![postman](doc/images/20201211162002.jpg)
 
 ## Rest
 rest api
